@@ -1,8 +1,8 @@
 /**
  * AngularCSS - CSS on-demand for AngularJS
  * @version v1.0.7
- * @author DOOR3, Alex Castillo
- * @link http://door3.github.io/angular-css
+ * @author DOOR3, Alex Castillo, Simone Falcini
+ * @link https://github.com/simonefalcini/angular-css
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 
@@ -15,6 +15,8 @@
    * Contains: config, constant, provider and run
    **/
   var angularCSS = angular.module('door3.css', []);
+
+  var cacheBusterTime = (new Date().getTime());
 
   // Config
   angularCSS.config(['$logProvider', function ($logProvider) {
@@ -173,7 +175,7 @@
         var queryString = '?cache=';
         // Append query string for bust cache only once
         if (stylesheet.href.indexOf(queryString) === -1) {
-          stylesheet.href = stylesheet.href + (stylesheet.bustCache ? queryString + (new Date().getTime()) : '');
+          stylesheet.href = stylesheet.href + (stylesheet.bustCache ? queryString + cacheBusterTime : '');
         }
       }
 
